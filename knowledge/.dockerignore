@@ -4,3 +4,6 @@
 # python .gitignore
 .venv/
 __pycache__/
+
+# container volume
+data/
