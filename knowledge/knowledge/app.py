@@ -11,17 +11,14 @@ from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
-DATABASE_FILENAME = os.path.join(os.getenv("DATA_DIR"), "database.sqlite")
+DATA_DIRECTORY = os.path.abspath(os.getenv("DATA_DIRECTORY"))
+CONFIG_DIRECTORY = os.path.abspath(os.getenv("CONFIG_DIRECTORY"))
 
 app: Flask = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + DATABASE_FILENAME
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = \
+    f"sqlite:///{os.path.join(DATA_DIRECTORY, 'database.sqlite')}"
 
 api: Api = Api(app, prefix="api")
 database: SQLAlchemy = SQLAlchemy(app)
-
-
-@app.route("/")
-def index():
-    return "Hello"

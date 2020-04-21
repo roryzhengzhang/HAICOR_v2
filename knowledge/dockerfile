@@ -1,12 +1,13 @@
-FROM python:3.8-alpine
+FROM python:3.8-buster
 
-RUN apk add --update pv make
+RUN apt-get update; apt-get install -y pv build-essential
+
+ENV FLASK_APP="knowledge:app"
+ENV DATA_DIRECTORY="/knowledge/data"
+ENV CONFIG_DIRECTORY="/knowledge/config"
 
 EXPOSE 5000
-VOLUME [ "/knowledge/data" ]
-
-ENV DATA_DIR "/knowledge/data"
-ENV FLASK_APP "knowledge:app"
+VOLUME ${DATA_DIRECTORY}
 
 WORKDIR /knowledge
 
