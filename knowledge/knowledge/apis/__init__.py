@@ -5,5 +5,4 @@
 
 from __future__ import annotations
 
-from knowledge import apis, models, views
-from knowledge.app import app
+from . import assertions, concepts

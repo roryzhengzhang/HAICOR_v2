@@ -20,5 +20,5 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = \
     f"sqlite:///{os.path.join(DATA_DIRECTORY, 'database.sqlite')}"
 
-api: Api = Api(app, prefix="api")
+api: Api = Api(app, prefix="/api")
 database: SQLAlchemy = SQLAlchemy(app)
