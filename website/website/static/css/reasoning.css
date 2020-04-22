@@ -1,0 +1,42 @@
+/**
+ * Copyright (c) 2020 HAICOR Project Team
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+#content {
+    display: flex;
+    padding: 2rem;
+}
+
+#concept {
+    flex-grow: 2;
+    flex-basis: 0rem;
+}
+
+#concept-search {
+    display: flex;
+    align-items: flex-end;
+}
+
+#concept-result {
+    overflow: auto;
+    flex-basis: 0rem;
+}
+
+#concept-result .card {
+    border: solid gray 0.1rem;
+    margin: 0.25rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+#concept-not-found {
+    text-align: center;
+}
+
+#knowledge {
+    flex-grow: 3;
+    flex-basis: 0rem;
+}

@@ -14,9 +14,14 @@ from knowledge.app import DATA_DIRECTORY, api, database
 from knowledge.models import assertions
 
 # preload conceptnet directed graph
-conceptnet: igraph.Graph = igraph.Graph.Read_Pickle(
-    os.path.join(DATA_DIRECTORY, "directed-graph.pkl")
-)
+conceptnet: igraph.Graph = None
+
+try:
+    conceptnet: igraph.Graph = igraph.Graph.Read_Pickle(
+        os.path.join(DATA_DIRECTORY, "directed-graph.pkl")
+    )
+except Exception as error:
+    print(error)
 
 
 class Reason(Resource):

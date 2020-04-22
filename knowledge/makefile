@@ -20,7 +20,7 @@ $(CONCEPTNET_TARGET):
 	wget --quiet --timestamping --show-progress --directory-prefix $(@D) \
 	$(CONCEPTNET_SOURCE)
 
-$(ENGLISHNET_TARGET):
+$(ENGLISHNET_TARGET): $(CONCEPTNET_TARGET)
 	gunzip -c $(CONCEPTNET_TARGET) \
 	| pv -perl --size `gunzip -c $(CONCEPTNET_TARGET) | wc -l` \
 	| grep -P '^/a/\[/r/.+,/c/en/.+,(/c/en/|/[^c]).+\]\t' \
