@@ -3,13 +3,14 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import * as concept from "./concept.js";
+import {
+    Search
+} from "./search.js";
 
-// concept search
-let search = new concept.Search(
-    null,
+let search = new Search(
+    "#concept-card",
     "#concept-text",
     "#concept-speech",
     "#concept-submit",
     "#concept-result"
-)
+);

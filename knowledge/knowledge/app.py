@@ -17,8 +17,8 @@ CONFIG_DIRECTORY = os.path.abspath(os.getenv("CONFIG_DIRECTORY"))
 app: Flask = Flask(__name__)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = \
+app.config["SQLALCHEMY_DATABASE_URI"] =\
     f"sqlite:///{os.path.join(DATA_DIRECTORY, 'database.sqlite')}"
 
-api: Api = Api(app, prefix="/api")
+api: Api = Api(app)
 database: SQLAlchemy = SQLAlchemy(app)

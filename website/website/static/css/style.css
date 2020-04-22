@@ -5,25 +5,20 @@
  * https://opensource.org/licenses/MIT
  */
 
-nav {
-    background-color: #333;
-}
-
-.padded {
-    padding: 0.5rem;
-}
-
-.stacked {
+body {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.fullscreen {
-    width: 100vw;
-    height: 100vh;
-    margin: 0rem;
+#content {
+    display: block;
+    flex-grow: 1;
+    flex-basis: 0rem;
 }
 
-.fill-remaining {
-    flex-grow: 1;
+#content .container {
+    height: 100%;
+    box-sizing: border-box;
 }

@@ -11,11 +11,15 @@ from requests import get
 
 from website.app import KNOWLEDGE_API, app
 
+SEARCH_LIMIT = 1000
+
 
 @app.route("/api/search/<string:text>", defaults={"speech": None})
 @app.route("/api/search/<string:text>/<string:speech>")
 def search(text: str, speech: Optional[str] = None):
-    query = f"{KNOWLEDGE_API}/search/{text}" + (f"/{speech}" if speech else "")
+    query = f"{KNOWLEDGE_API}/search/{text}"\
+        + (f"/{speech}" if speech else "")\
+        + f"/{SEARCH_LIMIT}"
 
     return get(query).text
 

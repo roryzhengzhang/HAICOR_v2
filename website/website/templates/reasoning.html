@@ -13,58 +13,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAICOR User Interface Prototype</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/reasoning.css') }}">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reasoning.css') }}">
 </head>
 
-<body class="stacked fullscreen">
-    <nav class="padded">
-        <div class="container">
-            <div class="row">
-                <a href="#" class="column button button-clear">Previous</a>
-                <a href="#" class="column button button-clear">Submit</a>
-                <a href="#" class="column button button-clear">Next</a>
-            </div>
-        </div>
-    </nav>
-
-    <div id="content" class="fill-remaining">
-        <div id="concept" class="padded stacked">
-            <h1>Concept</h1>
-
-            <form id="concept-search" onsubmit="return false;">
-                <fieldset class="fill-remaining">
-                    <label for="concept-text">Concept</label>
-                    <input type="text" name="concept-text" id="concept-text" autocomplete="off">
-                </fieldset>
-                <fieldset class="fill-remaining">
-                    <label for="concept-speech">Part of Speech</label>
-                    <select name="concept-speech" id="concept-speech">
-                        <option value="u">Unspecified</option>
-                        <option value="n">Noun</option>
-                        <option value="a">Adjective</option>
-                        <option value="s">Adjective satellite</option>
-                        <option value="v">Verb</option>
-                        <option value="r">Adverb</option>
-                        <option value="q">Q</option>
-                    </select>
-                </fieldset>
-                <fieldset class="fill-remaining">
-                    <input type="submit" id="concept-submit" class="button-primary">
-                </fieldset>
-            </form>
-
-            <section id="concept-result" class="stacked fill-remaining">
-            </section>
-        </div>
-
-        <div id="knowledge" class="padded stacked">
-            <h1>Knowledge</h1>
+<body>
+    <div class="hidden">
+        <!-- Concept template -->
+        <div id="concept-card" class="card fluid">
+            <section class="section"></section>
+            <button class="primary">Add</button>
         </div>
     </div>
 
-    <script type="module" src="{{ url_for('static', filename='js/reasoning.js') }}"></script>
+    <header>
+        <a href="#" class="logo">HAICOR</a>
+        <a href="#" class="button">About</a>
+        <a href="#" class="button">Contact</a>
+    </header>
+
+    <div id="content">
+        <!-- Concept search modal -->
+        <input type="checkbox" id="search-modal" class="modal">
+        <div>
+            <div class="card large">
+                <label for="search-modal" class="modal-close"></label>
+
+                <section class="section">
+                    <h1>Adding a new concept ...</h1>
+                </section>
+
+                <form id="concept-search" class="section" onsubmit="return false;">
+                    <div class="row center">
+                        <div class="col-sm-3">
+                            <label for="concept-text">Concept</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" id="concept-text" autocomplete="off" class="fill">
+                        </div>
+                    </div>
+
+                    <div class="row center">
+                        <div class="col-sm-3">
+                            <label for="concept-speech">Word class</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <select id="concept-speech" class="fill">
+                                <option value="u">Unspecified</option>
+                                <option value="n">Noun</option>
+                                <option value="a">Adjective</option>
+                                <option value="s">Adjective satellite</option>
+                                <option value="v">Verb</option>
+                                <option value="r">Adverb</option>
+                                <option value="q">Q</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <input type="submit" value="Submit" id="concept-submit" class="primary">
+                    </div>
+                </form>
+
+                <section id="concept-result" class="section">
+                    <a href=""></a>
+                </section>
+            </div>
+        </div>
+
+        <!-- Knowledge graph editor -->
+        <div class="container">
+            <div class="row">
+                <section class="col-sm-9">
+                    <h1>Knowledge Graph</h1>
+                </section>
+                <section class="col-sm-3">
+                    <h1>Controls</h1>
+                    <label for="search-modal" class="button">Add</label>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/reasoning/reasoning.js') }}"></script>
 </body>
 
 </html>

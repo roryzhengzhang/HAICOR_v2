@@ -50,6 +50,6 @@ class Concept(database.Model):
     def uri(self) -> str:
         """Generate ConceptNet URI."""
 
-        return f"/c/{self.language.code}/{self.text}" \
-            + (f"/{self.part_of_speech.code}" if self.speech else "") \
+        return f"/c/{self.language.code}/{self.text}"\
+            + (f"/{self.part_of_speech.code}" if self.speech else "")\
             + (f"/{self.suffix}" if self.suffix else "")

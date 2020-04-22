@@ -13,20 +13,25 @@ from flask_restful import Resource
 from knowledge.app import DATA_DIRECTORY, api, database
 from knowledge.models import assertions
 
-# preload conceptnet directed graph
-conceptnet: igraph.Graph = None
 
-try:
-    conceptnet: igraph.Graph = igraph.Graph.Read_Pickle(
-        os.path.join(DATA_DIRECTORY, "directed-graph.pkl")
-    )
-except Exception as error:
-    print(error)
+class ConceptNet:
+    conceptnet = None
+
+    @classmethod
+    def get(cls) -> igraph.Graph:
+        if cls.conceptnet is None:
+            cls.conceptnet = igraph.Graph.Read_Pickle(
+                os.path.join(DATA_DIRECTORY, "directed-graph.pkl")
+            )
+
+        return cls.conceptnet
 
 
 class Reason(Resource):
     def get(self, source: int, middle: int, target: int):
-        path = conceptnet.get_shortest_paths(source, middle)[0] \
+        conceptnet = ConceptNet.get()
+
+        path = conceptnet.get_shortest_paths(source, middle)[0]\
             + conceptnet.get_shortest_paths(middle, target)[0][1:]
 
         if len(path) == 0 or path[0] != source or path[-1] != target:
@@ -37,8 +42,8 @@ class Reason(Resource):
 
 class Assertion(Resource):
     def get(self, source: int, target: int):
-        query = database.session \
-            .query(assertions.Assertion) \
+        query = database.session\
+            .query(assertions.Assertion)\
             .filter_by(source_id=source, target_id=target)
 
         assertion = query.one()

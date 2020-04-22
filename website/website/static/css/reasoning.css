@@ -5,38 +5,17 @@
  * https://opensource.org/licenses/MIT
  */
 
-#content {
-    display: flex;
-    padding: 2rem;
+.fill {
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#concept {
-    flex-grow: 2;
-    flex-basis: 0rem;
-}
-
-#concept-search {
-    display: flex;
-    align-items: flex-end;
+.center {
+    align-items: center;
 }
 
 #concept-result {
-    overflow: auto;
-    flex-basis: 0rem;
-}
-
-#concept-result .card {
-    border: solid gray 0.1rem;
-    margin: 0.25rem;
-    padding: 1.5rem;
-    border-radius: 1rem;
-}
-
-#concept-not-found {
-    text-align: center;
-}
-
-#knowledge {
-    flex-grow: 3;
-    flex-basis: 0rem;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
 }

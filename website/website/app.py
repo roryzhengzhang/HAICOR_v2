@@ -7,7 +7,6 @@ from __future__ import annotations
 
 from flask import Flask
 
-# KNOWLEDGE_API = "http://knowledge:5000/api"
-KNOWLEDGE_API = "http://192.168.1.100:5000/api"
+KNOWLEDGE_API = "http://knowledge:5000"
 
 app: Flask = Flask(__name__)

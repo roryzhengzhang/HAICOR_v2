@@ -157,13 +157,13 @@ def initialize(conceptnet: str):
     # generate minified knowledge graph
     print("Generating minified knowledge graph ...", end='\r')
 
-    assertions = database.session \
-        .query(Assertion.source_id, Assertion.target_id) \
+    assertions = database.session\
+        .query(Assertion.source_id, Assertion.target_id)\
         .union(
             database.session
             .query(Assertion.target_id, Assertion.source_id)
             .filter(Assertion.relation.has(directed=False))
-        ) \
+        )\
         .distinct()
 
     graph = igraph.Graph(edges=assertions.all(), directed=True)

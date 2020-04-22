@@ -52,7 +52,7 @@ class Assertion(database.Model):
     def uri(self) -> str:
         """Generate ConceptNet URI."""
 
-        return f"/a/[{self.relation.uri()}/," \
+        return f"/a/[{self.relation.uri()}/,"\
             + f"{self.source.uri()}/,{self.target.uri()}/]"
 
 
@@ -74,5 +74,5 @@ class ExternalURL(database.Model):
     def uri(self) -> str:
         """Generate ConceptNet URI."""
 
-        return f"/a/[/r/ExternalURL/," \
+        return f"/a/[/r/ExternalURL/,"\
             + f"{self.source.uri()}/,/{self.target_id}/]"
