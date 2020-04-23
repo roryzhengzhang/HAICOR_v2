@@ -73,9 +73,12 @@
             <svg id="display-display" class="expanded"></svg>
 
             <section id="control" class="row">
-                <button id="control-remove" class="col-lg button primary">Remove</button>
-                <button id="control-connect" class="col-lg button primary">Connect</button>
-                <button id="control-unselect" class="col-lg button primary">Unselect</button>
+                <button id="control-remove" class="col-sm button primary">Remove</button>
+                <button id="control-connect" class="col-sm button primary">Connect</button>
+                <button id="control-unselect" class="col-sm button primary">Unselect</button>
+                <button id="control-submit" class="col-sm button primary">Submit</button>
+                <button id="control-source" class="col-sm button primary">Set Source</button>
+                <button id="control-target" class="col-sm button primary">Set Target</button>
             </section>
         </div>
     </div>
@@ -90,6 +93,9 @@
         document.querySelector("#control-remove").addEventListener("click", () => display.remove());
         document.querySelector("#control-connect").addEventListener("click", () => display.connect());
         document.querySelector("#control-unselect").addEventListener("click", () => display.unselect());
+        document.querySelector("#control-submit").addEventListener("click", () => display.submit());
+        document.querySelector("#control-source").addEventListener("click", () => display.set_source());
+        document.querySelector("#control-target").addEventListener("click", () => display.set_target());
     </script>
 </body>
 

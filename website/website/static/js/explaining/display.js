@@ -83,6 +83,8 @@ export default class Display {
         nodes.exit().remove();
 
         nodes.classed("selected", d => d.selected)
+            .classed("source", d => d.id == this.source)
+            .classed("target", d => d.id == this.target)
             .attr("cx", d => d.x)
             .attr("cy", d => d.y);
 
@@ -204,6 +206,40 @@ export default class Display {
                 assertion.selected = true;
 
         this.remove();
+    }
+
+    submit() {
+        // TEMPORARY SOLUTION
+        let username = prompt("Your netID");
+        let question = prompt("Your task number");
+
+        let data = {
+            source: this.source,
+            target: this.target,
+            nodes: this.node_data,
+            edges: this.edge_data,
+            username: username,
+            question: question
+        }
+
+        fetch("/api/submit", {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+    }
+
+    set_source() {
+        if (this.candidates.length == 1)
+            this.source = this.candidates[0];
+
+        this.unselect();
+    }
+
+    set_target() {
+        if (this.candidates.length == 1)
+            this.target = this.candidates[0];
+
+        this.unselect();
     }
 
     // utility functions

@@ -32,7 +32,16 @@
 }
 
 #display svg g#nodes circle.selected {
-    fill: crimson;
+    stroke: crimson;
+    stroke-width: 5px;
+}
+
+#display svg g#nodes circle.source {
+    fill: orange;
+}
+
+#display svg g#nodes circle.target {
+    fill: green;
 }
 
 #display svg g#node-labels text {

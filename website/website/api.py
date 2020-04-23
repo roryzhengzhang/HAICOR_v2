@@ -5,8 +5,11 @@
 
 from __future__ import annotations
 
+import datetime
+import json
 from typing import Optional
 
+from flask import request
 from requests import get
 
 from website.app import KNOWLEDGE_API, app
@@ -59,3 +62,16 @@ def assertion(source: int, target: int):
         return get(f"{KNOWLEDGE_API}/assertion/{target}/{source}").text
 
     return response.text
+
+
+@app.route("/api/submit", methods=["POST"])
+def submit():
+    data = json.loads(request.data)
+
+    current = datetime.datetime.now()
+    filename = f"{data['username']}-{data['question']}-{current}"
+
+    with open(filename, "w") as file:
+        json.dump(data, file, indent=4)
+
+    return "success"
