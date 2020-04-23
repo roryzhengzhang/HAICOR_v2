@@ -28,7 +28,7 @@
 }
 
 #display svg g#nodes circle {
-    fill: blacks;
+    fill: #1976d2;
 }
 
 #display svg g#nodes circle.selected {
@@ -36,5 +36,21 @@
 }
 
 #display svg g#node-labels text {
+    user-select: none;
+}
+
+#display svg g#edges line {
+    stroke: #1976d2
+}
+
+#display svg g#edges line.selected {
+    stroke: crimson;
+}
+
+#display svg g#edges line.required {
+    stroke-dasharray: 10, 5
+}
+
+#display svg g#edge-labels text {
     user-select: none;
 }

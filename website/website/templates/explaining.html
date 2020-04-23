@@ -73,8 +73,9 @@
             <svg id="display-display" class="expanded"></svg>
 
             <section id="control" class="row">
-                <button class="col-lg button primary">Remove</button>
-                <button class="col-lg button primary">Connect</button>
+                <button id="control-remove" class="col-lg button primary">Remove</button>
+                <button id="control-connect" class="col-lg button primary">Connect</button>
+                <button id="control-unselect" class="col-lg button primary">Unselect</button>
             </section>
         </div>
     </div>
@@ -85,6 +86,10 @@
 
         let display = new Display(null, "#display-display", null, null);
         let search = new Search(display, "#search-text", "#search-speech", "#search-submit", "#search-template", "#search-result");
+
+        document.querySelector("#control-remove").addEventListener("click", () => display.remove());
+        document.querySelector("#control-connect").addEventListener("click", () => display.connect());
+        document.querySelector("#control-unselect").addEventListener("click", () => display.unselect());
     </script>
 </body>
 

@@ -12,6 +12,7 @@ from requests import get
 from website.app import KNOWLEDGE_API, app
 
 SEARCH_LIMIT = 1000
+REASON_LIMIT = 5
 
 
 @app.route("/api/search/<string:text>", defaults={"speech": None})
@@ -29,3 +30,32 @@ def concept(id: int):
     query = f"{KNOWLEDGE_API}/concept/{id}"
 
     return get(query).text
+
+
+@app.route("/api/reason/<int:source>/<int:middle>/<int:target>")
+def reason(source: int, middle: int, target: int):
+    query_1 = f"{KNOWLEDGE_API}/reason/{source}/{middle}"
+    query_2 = f"{KNOWLEDGE_API}/reason/{middle}/{target}"
+
+    left_path = get(query_1).json()
+    right_path = get(query_2).json()
+
+    if len(left_path["path"]) > REASON_LIMIT:
+        left_path["path"] = []
+
+    if len(right_path["path"]) > REASON_LIMIT:
+        right_path["path"] = []
+
+    return {"left": left_path, "right": right_path}
+
+
+@app.route("/api/assertion/<int:source>/<int:target>")
+def assertion(source: int, target: int):
+    query = f"{KNOWLEDGE_API}/assertion/{source}/{target}"
+
+    response = get(query)
+
+    if response.json() is None:
+        return get(f"{KNOWLEDGE_API}/assertion/{target}/{source}").text
+
+    return response.text

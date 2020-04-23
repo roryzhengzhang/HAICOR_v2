@@ -15,9 +15,11 @@ export default class API {
             return `/api/search/${text}/${speech}`;
     }
 
-    static assertion(id) {
-        return `/api/assertion/${id}`;
+    static assertion(source, target) {
+        return `/api/assertion/${source}/${target}`;
     }
 
-    static assertion_search(source, target) {}
+    static assertion_search(source, middle, target) {
+        return `/api/reason/${source}/${middle}/${target}`;
+    }
 }

@@ -28,16 +28,12 @@ class ConceptNet:
 
 
 class Reason(Resource):
-    def get(self, source: int, middle: int, target: int):
-        conceptnet = ConceptNet.get()
+    def get(self, source: int, target: int):
+        concept = ConceptNet.get()
 
-        path = conceptnet.get_shortest_paths(source, middle)[0]\
-            + conceptnet.get_shortest_paths(middle, target)[0][1:]
+        path = concept.get_shortest_paths(source, target)[0]
 
-        if len(path) == 0 or path[0] != source or path[-1] != target:
-            return {"reachable": False, "path": path}
-        else:
-            return {"reachable": True, "path": path}
+        return {"connected": len(path) != 0, "path": path}
 
 
 class Assertion(Resource):
@@ -46,17 +42,18 @@ class Assertion(Resource):
             .query(assertions.Assertion)\
             .filter_by(source_id=source, target_id=target)
 
-        assertion = query.one()
+        assertion = query.all()
 
-        return {"source_id": assertion.source_id,
-                "source_uri": assertion.source.uri(),
-                "target_id": assertion.target_id,
-                "target_uri": assertion.target.uri(),
+        if len(assertion) == 0:
+            return
+
+        return {"source_id": assertion[0].source_id,
+                "target_id": assertion[0].target_id,
                 "relations": [{"id": i.id,
                                "relation": i.relation.relation,
                                "directed": i.relation.directed}
                               for i in query.all()]}
 
 
-api.add_resource(Reason, "/reason/<int:source>/<int:middle>/<int:target>")
+api.add_resource(Reason, "/reason/<int:source>/<int:target>")
 api.add_resource(Assertion, "/assertion/<int:source>/<int:target>")
