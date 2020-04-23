@@ -1,0 +1,91 @@
+<!--
+ Copyright (c) 2020 HAICOR Project Team
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAICOR Project Prototype - Explaining</title>
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/explaining.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
+</head>
+
+<body class="fullscreen">
+    <header>
+        <a href="#" class="logo">HAICOR Project</a>
+        <a href="#" class="button">About</a>
+        <a href="#" class="button">Contact</a>
+    </header>
+
+    <div id="content" class="expanded">
+        <div id="search">
+            <h1>Concept Search</h1>
+
+            <form action="GET" class="row" onsubmit="return false;">
+                <input type="text" id="search-text" class="col-sm" autocomplete="off" placeholder="Your concept...">
+                <select id="search-speech" class="col-sm">
+                    <option value="?">Unspecified</option>
+                    <option value="n">Noun</option>
+                    <option value="a">Adjective</option>
+                    <option value="s">Adjective satellite</option>
+                    <option value="v">Verb</option>
+                    <option value="r">Adverb</option>
+                    <option value="q">Q</option>
+                </select>
+                <input type="submit" value="Submit" id="search-submit" class="col-sm primary" style="margin: 4px;">
+            </form>
+
+            <section class="hidden">
+                <section id="search-template" class="card fluid">
+                    <section class="section">
+                        <h3>
+                            <span class="concept-text"></span>
+                            <code class="concept-speech"></code>
+                            <small class="concept-uri"></small>
+                        </h3>
+                    </section>
+
+                    <section class="section concept-externals"></section>
+
+                    <section class="section row">
+                        <button class="col-sm button primary concept-button">Insert into knowledge graph</button>
+                    </section>
+                </section>
+            </section>
+
+            <section id="search-result" class="expanded">
+            </section>
+        </div>
+
+        <div id="display">
+            <h1>Concept Display</h1>
+
+            <svg id="display-display" class="expanded"></svg>
+
+            <section id="control" class="row">
+                <button class="col-lg button primary">Remove</button>
+                <button class="col-lg button primary">Connect</button>
+            </section>
+        </div>
+    </div>
+
+    <script type="module">
+        import Search from "{{ url_for('static', filename='js/explaining/search.js') }}";
+        import Display from "{{ url_for('static', filename='js/explaining/display.js') }}";
+
+        let display = new Display(null, "#display-display", null, null);
+        let search = new Search(display, "#search-text", "#search-speech", "#search-submit", "#search-template", "#search-result");
+    </script>
+</body>
+
+</html>

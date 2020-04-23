@@ -12,4 +12,4 @@ from website.app import app
 
 @app.route("/")
 def reasoning():
-    return render_template("reasoning.html")
+    return render_template("explaining.html")

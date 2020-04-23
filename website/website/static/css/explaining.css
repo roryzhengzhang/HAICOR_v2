@@ -1,0 +1,40 @@
+/**
+ * Copyright (c) 2020 HAICOR Project Team
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+#content {
+    display: flex;
+}
+
+#search {
+    display: flex;
+    flex-grow: 2;
+    flex-basis: 0px;
+    flex-direction: column;
+}
+
+#search-result {
+    overflow-y: auto;
+}
+
+#display {
+    display: flex;
+    flex-grow: 3;
+    flex-basis: 0px;
+    flex-direction: column;
+}
+
+#display svg g#nodes circle {
+    fill: blacks;
+}
+
+#display svg g#nodes circle.selected {
+    fill: crimson;
+}
+
+#display svg g#node-labels text {
+    user-select: none;
+}

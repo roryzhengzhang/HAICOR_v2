@@ -8,5 +8,6 @@ from __future__ import annotations
 from flask import Flask
 
 KNOWLEDGE_API = "http://knowledge:5000"
+KNOWLEDGE_API = "http://localhost:4000"
 
 app: Flask = Flask(__name__)

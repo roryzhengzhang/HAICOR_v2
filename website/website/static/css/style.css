@@ -5,20 +5,14 @@
  * https://opensource.org/licenses/MIT
  */
 
-body {
+.fullscreen {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-#content {
-    display: block;
+.expanded {
     flex-grow: 1;
-    flex-basis: 0rem;
-}
-
-#content .container {
-    height: 100%;
-    box-sizing: border-box;
+    flex-basis: 0px;
 }
